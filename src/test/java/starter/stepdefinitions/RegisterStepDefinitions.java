@@ -6,11 +6,16 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
+import net.serenitybdd.screenplay.questions.WebElementQuestion;
+import net.serenitybdd.screenplay.waits.Wait;
 import starter.navigation.NavigateTo;
 import starter.questions.account.AccountQuestions;
 import starter.questions.register.RegisterQuestions;
 import starter.task.register.FillDataRegisterForm;
 import starter.task.register.SendEmailForm;
+import starter.ui.register.RegisterFieldsForm;
+import starter.ui.register.RegisterForm;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
@@ -84,6 +89,9 @@ public class RegisterStepDefinitions {
     @Then("she should see an error on the screen")
     public void she_should_see_an_error_on_the_screen() {
         System.out.println(RegisterQuestions.errorMesaggeInvalidEmail().answeredBy(theActorInTheSpotlight()));
+        theActorCalled(this.name).attemptsTo(Wait.until(
+                        WebElementQuestion.the(RegisterForm.CREATE_ACCOUNT_ERROR), WebElementStateMatchers.isEnabled())
+                .forNoLongerThan(30).seconds());
         theActorInTheSpotlight().should(
                 seeThat("The displayed error ", RegisterQuestions.errorMesaggeInvalidEmail(), equalTo("Invalid email address."))
         );
