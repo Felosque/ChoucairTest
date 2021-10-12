@@ -1,4 +1,4 @@
-package starter.account;
+package starter.ui.account;
 
 import org.openqa.selenium.By;
 
@@ -9,5 +9,7 @@ public class AccountForm {
     public static By MY_ADDRESSES = By.xpath("//a[@title='Addresses']");
     public static By PERSONAL_INFORMATION = By.xpath("//a[@title='Information']");
     public static By MY_WHITELIST = By.xpath("//a[@title='My wishlists']");
+    public static By ACCOUNT_NAME = By.xpath("//a[@title='View my customer account']");
+
 
 }

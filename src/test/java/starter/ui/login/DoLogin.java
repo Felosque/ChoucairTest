@@ -1,4 +1,4 @@
-package starter.login;
+package starter.ui.login;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;

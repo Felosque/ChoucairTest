@@ -6,10 +6,14 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
-import starter.login.DoLogin;
+import starter.ui.account.AccountQuestions;
+import starter.ui.login.DoLogin;
 import starter.navigation.NavigateTo;
 
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
+import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 public class LoginStepDefinitions {
 
@@ -35,6 +39,10 @@ public class LoginStepDefinitions {
 
     @Then("he should have access to manage his account")
     public void he_should_have_access_to_manage_his_account() {
+        System.out.println(AccountQuestions.nameOfAccount().answeredBy(theActorInTheSpotlight()));
+        theActorInTheSpotlight().should(
+                seeThat("The displayed name ", AccountQuestions.nameOfAccount(), equalTo("Felosque Felosque"))
+        );
     }
 
 }
