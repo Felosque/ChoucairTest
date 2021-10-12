@@ -6,7 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
-import starter.ui.account.AccountQuestions;
+import starter.questions.account.AccountQuestions;
 import starter.task.login.Login;
 import starter.navigation.NavigateTo;
 

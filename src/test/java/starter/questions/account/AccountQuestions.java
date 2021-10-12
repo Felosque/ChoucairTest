@@ -1,7 +1,8 @@
-package starter.ui.account;
+package starter.questions.account;
 
 import net.serenitybdd.screenplay.Question;
 import net.serenitybdd.screenplay.questions.TextContent;
+import starter.ui.account.AccountForm;
 
 public class AccountQuestions {
 
