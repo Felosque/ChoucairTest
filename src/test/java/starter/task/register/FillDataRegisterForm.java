@@ -75,7 +75,6 @@ public class FillDataRegisterForm implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                Click.on(RegisterForm.REGISTER_BUTTON),
                 Wait.until(
                         WebElementQuestion.the(RegisterFieldsForm.CUSTOMER_FIRST_NAME), WebElementStateMatchers.isEnabled())
                         .forNoLongerThan(30).seconds(),

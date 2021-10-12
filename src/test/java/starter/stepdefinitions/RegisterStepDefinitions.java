@@ -8,6 +8,7 @@ import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import starter.navigation.NavigateTo;
 import starter.questions.account.AccountQuestions;
+import starter.questions.register.RegisterQuestions;
 import starter.task.register.FillDataRegisterForm;
 import starter.task.register.SendEmailForm;
 
@@ -19,8 +20,8 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class RegisterStepDefinitions {
 
 
-    String name;
-    String lastName;
+    String name = "";
+    String lastName = "";
     String uniqueEmail = System.currentTimeMillis() + "@gmail.com";
 
     @Before
@@ -32,7 +33,6 @@ public class RegisterStepDefinitions {
     public void is_on_the_registration_page(String name, String lastname) {
         this.name = name;
         this.lastName = lastname;
-        System.out.println(uniqueEmail);
         theActorCalled(this.name).attemptsTo(
                 NavigateTo.theLoginPage()
         );
@@ -40,14 +40,14 @@ public class RegisterStepDefinitions {
 
     @Given("he sends a valid email for register")
     public void he_sends_a_valid_email_for_register() {
-        theActorCalled(name).attemptsTo(
+        theActorCalled(this.name).attemptsTo(
                 SendEmailForm.withEmail(uniqueEmail)
         );
     }
 
     @When("he sends valid registration data")
     public void he_send_valid_registration_data() {
-        theActorCalled(name).attemptsTo(
+        theActorCalled(this.name).attemptsTo(
                 FillDataRegisterForm.with()
                         .isMale(true)
                         .setCustomerFirstName(name)
@@ -76,13 +76,17 @@ public class RegisterStepDefinitions {
 
     @Given("she sends a wrong email for register")
     public void she_sends_a_wrong_email_for_register() {
-        theActorCalled(name).attemptsTo(
-                SendEmailForm.withEmail(uniqueEmail)
+        theActorCalled(this.name).attemptsTo(
+                SendEmailForm.withEmail("emailerror.com")
         );
     }
 
     @Then("she should see an error on the screen")
     public void she_should_see_an_error_on_the_screen() {
+        System.out.println(RegisterQuestions.errorMesaggeInvalidEmail().answeredBy(theActorInTheSpotlight()));
+        theActorInTheSpotlight().should(
+                seeThat("The displayed error ", RegisterQuestions.errorMesaggeInvalidEmail(), equalTo("Invalid email address."))
+        );
     }
 
     @Then("he should see the account management screen")

@@ -26,7 +26,8 @@ public class SendEmailForm implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                Enter.theValue(email).into(RegisterForm.REGISTER_EMAIL)
+                Enter.theValue(email).into(RegisterForm.REGISTER_EMAIL),
+                Click.on(RegisterForm.REGISTER_BUTTON)
         );
     }
 }
