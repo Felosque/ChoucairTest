@@ -12,4 +12,10 @@ public class NavigateTo  {
         );
     }
 
+    public static Performable theRegisterPage() {
+        return Task.where("{0} opens the register of my store",
+                Open.browserOn().the(MyStoreLoginPage.class)
+        );
+    }
+
 }

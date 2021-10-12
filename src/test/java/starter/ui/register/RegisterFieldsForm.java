@@ -21,12 +21,13 @@ public class RegisterFieldsForm {
     public static By ADDRESS_1 = By.id("address1");
     public static By ADDRESS_2 = By.id("address2");
     public static By ADDRESS_CITY = By.id("city");
-    public static By ADDRESS_STATE = By.id("uniform-id_state");
+    public static By ADDRESS_STATE = By.id("id_state");
     public static By ADDRESS_POST_CODE = By.id("postcode");
     public static By ADDRESS_COUNTRY = By.id("id_country");
     public static By ADDRESS_ADDITIONAL_INFORMATION = By.id("other");
     public static By ADDRESS_HOME_PHONE = By.id("phone");
     public static By ADDRESS_MOBILE_PHONE = By.id("phone_mobile");
+    public static By ADDRESS_ALIAS = By.id("alias");
     public static By SUBMIT_BUTTON = By.id("submitAccount");
 
 }
