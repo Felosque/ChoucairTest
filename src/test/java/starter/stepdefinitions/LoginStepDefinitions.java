@@ -7,7 +7,7 @@ import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import starter.ui.account.AccountQuestions;
-import starter.ui.login.DoLogin;
+import starter.task.login.Login;
 import starter.navigation.NavigateTo;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
@@ -33,7 +33,11 @@ public class LoginStepDefinitions {
     public void he_sends_their_valid_credentials() {
         theActorCalled(name).attemptsTo(
                 NavigateTo.theLoginPage(),
-                DoLogin.withCredentials("felosque@gmail.com", "123felosque")
+                Login
+                        .with()
+                        .userEmail("felosque@gmail.com")
+                        .password("123felosque")
+                        .build()
         );
     }
 
