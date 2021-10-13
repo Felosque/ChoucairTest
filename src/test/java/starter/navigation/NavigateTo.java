@@ -18,4 +18,15 @@ public class NavigateTo  {
         );
     }
 
+    public static Performable theProductPage() {
+        return Task.where("{0} opens the product id:1 of my store",
+                Open.browserOn().the(MyStoreProductPage.class)
+        );
+    }
+
+    public static Performable theCheckoutPage() {
+        return Task.where("{0} open chekout page",
+                Open.browserOn().the(MyStoreShoppingCartPage.class)
+        );
+    }
 }
