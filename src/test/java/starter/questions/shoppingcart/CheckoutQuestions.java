@@ -16,6 +16,6 @@ public class CheckoutQuestions {
     }
 
     public static Question<String> productTotal(){
-        return actor -> TextContent.of(ResumeCheckoutForm.PRODUCT_TOTAL).viewedBy(actor).asString().trim().replace("$", "");
+        return actor -> TextContent.of(ResumeCheckoutForm.PRODUCT_TOTAL).viewedBy(actor).asString().trim().replace("$", "").replace(".", ",");
     }
 }

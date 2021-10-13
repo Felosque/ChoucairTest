@@ -4,6 +4,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
@@ -15,6 +16,7 @@ import starter.questions.shoppingcart.CheckoutQuestions;
 import starter.task.login.Login;
 import starter.task.shoppingcart.AddItemToCart;
 import starter.ui.product.ProductForm;
+import starter.ui.shoppingcart.ResumeCheckoutForm;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
@@ -72,16 +74,14 @@ public class ShoppingCartStepDefinitions {
     @Then("he should find the three selected products")
     public void should_find_the_three_selected_products() {
         System.out.println(CheckoutQuestions.productPrice().answeredBy(theActorInTheSpotlight()));
-        System.out.println(CheckoutQuestions.productQuantity().answeredBy(theActorInTheSpotlight()));
         System.out.println(CheckoutQuestions.productTotal().answeredBy(theActorInTheSpotlight()));
 
         double price = Double.valueOf(CheckoutQuestions.productPrice().answeredBy(theActorInTheSpotlight()));
-        int quantity = Integer.valueOf(CheckoutQuestions.productPrice().answeredBy(theActorInTheSpotlight()));
-        double shouldTotal = price * quantity;
+        double total = price * this.numberOfProducts;
+        String shouldTotal = String.format("%.2f", total);
 
         theActorInTheSpotlight().should(
-                seeThat("The total price ", CheckoutQuestions.productTotal(), equalTo(shouldTotal)),
-                seeThat("The quantity ", CheckoutQuestions.productQuantity(), equalTo(this.numberOfProducts))
+                seeThat("The total price ", CheckoutQuestions.productTotal(), equalTo(shouldTotal))
         );
     }
 
