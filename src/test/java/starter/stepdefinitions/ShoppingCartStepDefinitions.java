@@ -15,12 +15,14 @@ import starter.questions.account.AccountQuestions;
 import starter.questions.shoppingcart.CheckoutQuestions;
 import starter.task.login.Login;
 import starter.task.shoppingcart.AddItemToCart;
+import starter.task.shoppingcart.FinishCheckout;
 import starter.ui.product.ProductForm;
 import starter.ui.shoppingcart.ResumeCheckoutForm;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 public class ShoppingCartStepDefinitions {
@@ -68,6 +70,20 @@ public class ShoppingCartStepDefinitions {
     public void going_to_check_his_shopping_cart() {
         theActorCalled(this.name).attemptsTo(
                 NavigateTo.theCheckoutPage()
+        );
+    }
+
+    @When("he's going to finish checkout")
+    public void he_s_going_to_finish_checkout() {
+        theActorCalled(this.name).attemptsTo(
+                FinishCheckout.finishCheckout("Thx for all")
+        );
+    }
+
+    @Then("he should see his purchase completed")
+    public void he_should_see_his_purchase_completed() {
+        theActorInTheSpotlight().should(
+                seeThat("The message ", CheckoutQuestions.finishCheckoutMessage(), containsString("Your order on My Store is complete"))
         );
     }
 

@@ -18,4 +18,8 @@ public class CheckoutQuestions {
     public static Question<String> productTotal(){
         return actor -> TextContent.of(ResumeCheckoutForm.PRODUCT_TOTAL).viewedBy(actor).asString().trim().replace("$", "").replace(".", ",");
     }
+
+    public static Question<String> finishCheckoutMessage(){
+        return actor -> TextContent.of(ResumeCheckoutForm.FINISH_MESSAGE).viewedBy(actor).asString().trim();
+    }
 }
